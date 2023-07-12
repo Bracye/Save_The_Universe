@@ -27,11 +27,11 @@ const USS_Assembly = new Spaceship("USS Assembly", 20, 5, 0.7);
 const alienShips = [];
 
 //Loop to create 6 spaceships and generate random values for the properties 
-for(let i = 0; i <= 6; i++) {
+for(let i = 0; i < 6; i++) {
     const hull = Math.floor(Math.random() * 4) + 3;
     const firepower = Math.floor(Math.random() * 3) + 2;
     const accuracy = Math.random() * 0.2 + 0.6;
-    const alienShip = new Spaceship(`Alien Ship ${i}`, hull, firepower, accuracy);
+    const alienShip = new Spaceship(`Alien Ship ${i + 1}`, hull, firepower, accuracy);
     alienShips.push(alienShip)
 
 }
@@ -47,14 +47,15 @@ playGame = () => {
         return;
     }
     //Gets the current alienship and displays a message when encountered
-const currentShip = alienShips[currentShipIndex];
-window.alert(`- - - - - - - - -
-Alien Ship ${currentShipIndex + 1} encountered!
-- - - - - - - - -`);
-
-while (USS_Assembly.hull > 0 && currentShip.hull > 0) {
+    const currentShip = alienShips[currentShipIndex];
+    window.alert(`- - - - - - - - -
+    Alien Ship ${currentShipIndex + 1} encountered!
+    - - - - - - - - -`);
+    // while loop used to show if the USS and alien ship hull is still over 0 the USS will initiate an attack
+    while (USS_Assembly.hull > 0 && currentShip.hull > 0) {
     USS_Assembly.attack(currentShip);
 
+    //If the current alien ship hull is less than or equal to 0 then this alert will pop up
     if (currentShip.hull <= 0) {
         window.alert(`You destroyed Alien Ship ${currentShipIndex + 1}!`);
         currentShipIndex++;
@@ -62,20 +63,22 @@ while (USS_Assembly.hull > 0 && currentShip.hull > 0) {
     }
     currentShip.attack(USS_Assembly);
 
+    //If the USS_Assembly ship hull is less than or equal to 0 this alrt will pop up
     if (USS_Assembly.hull <= 0) {
         window.alert("Game over! The USS Assembly has been destroyed.");
         return;
     }
 }
 
-console.log("- - - - - - - - - - - - - - - -");
-const keepPlaying = window.confirm("Do you want to attack the next ship!")
+    //Keep playing conditional with a window.confirm to choose if you want to keep playing or retreat
+    console.log("- - - - - - - - - - - - - - - -");
+    const keepPlaying = window.confirm("Do you want to attack the next ship!")
 
-if (keepPlaying) {
+    if (keepPlaying) {
     playGame()
-} else {
-   window.alert("Game Over! You chose to retreat.");
-}
+    } else {
+    window.alert("Game Over! You chose to retreat.");
+    }
 
 }
 
