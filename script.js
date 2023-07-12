@@ -10,12 +10,15 @@ class Spaceship {
 //Attack method to attack the target ship
   attack(targetShip) {
     window.alert(`${this.name} is attacking ${targetShip.name}`);
+    console.log(`${this.name} is attacking ${targetShip.name}`);
 
     if (Math.random() < this.accuracy) {
       targetShip.hull -= this.firepower;
       window.alert(`Hit! ${targetShip.name} Hull: ${targetShip.hull}`);
+      console.log(`Hit! ${targetShip.name} Hull: ${targetShip.hull}`);
     } else {
       window.alert(`Missed! ${targetShip.name} Hull: ${targetShip.hull}`);
+      console.log(`Missed! ${targetShip.name} Hull: ${targetShip.hull}`);
     }
   }
 }
@@ -44,11 +47,16 @@ playGame = () => {
     //If it is then this message will display
     if (currentShipIndex >= alienShips.length) {
         window.alert("Congratulations! you have destroyed all the alien ships!");
+        console.log("Congratulations! you have destroyed all the alien ships!");
+        
         return;
     }
     //Gets the current alienship and displays a message when encountered
     const currentShip = alienShips[currentShipIndex];
     window.alert(`- - - - - - - - -
+    Alien Ship ${currentShipIndex + 1} encountered!
+    - - - - - - - - -`);
+    console.log(`- - - - - - - - -
     Alien Ship ${currentShipIndex + 1} encountered!
     - - - - - - - - -`);
     // while loop used to show if the USS and alien ship hull is still over 0 the USS will initiate an attack
@@ -58,6 +66,7 @@ playGame = () => {
     //If the current alien ship hull is less than or equal to 0 then this alert will pop up
     if (currentShip.hull <= 0) {
         window.alert(`You destroyed Alien Ship ${currentShipIndex + 1}!`);
+        console.log(`You destroyed Alien Ship ${currentShipIndex + 1}!`);
         currentShipIndex++;
         break
     }
@@ -66,6 +75,7 @@ playGame = () => {
     //If the USS_Assembly ship hull is less than or equal to 0 this alrt will pop up
     if (USS_Assembly.hull <= 0) {
         window.alert("Game over! The USS Assembly has been destroyed.");
+        console.log("Game over! The USS Assembly has been destroyed.");
         return;
     }
 }
@@ -78,9 +88,14 @@ playGame = () => {
     playGame()
     } else {
     window.alert("Game Over! You chose to retreat.");
+    console.log("Game Over! You chose to retreat.")
     }
-
 }
 
+    const startButton = document.getElementById("startButton")
+    startButton.addEventListener("click", () => {
+        playGame() 
+    });
+   
 
-playGame()
+
