@@ -82,7 +82,7 @@ class Spaceship {
   
       //Keep playing conditional with a window.confirm to choose if you want to keep playing or retreat
       console.log("- - - - - - - - - - - - - - - -");
-      const keepPlaying = window.confirm("Do you want to attack the next ship!")
+      const keepPlaying = window.confirm("Do you want to attack the next ship?")
   
       if (keepPlaying) {
       playGame()
@@ -91,7 +91,7 @@ class Spaceship {
       console.log("Game Over! You chose to retreat.")
       }
   }
-  
+    //Start button with a click event to run the playGame function
       const startButton = document.getElementById("startButton")
       startButton.addEventListener("click", () => {
           playGame() 
